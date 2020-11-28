@@ -25,7 +25,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RequestQueue queue;
-    private int suma;
+    private int suma=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     suma+=response.getInt("numero");
                     TextView textView= findViewById(R.id.numero);
-                    textView.setText(suma);
+                    textView.setText(String.valueOf(suma));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -84,5 +84,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         queue.add(request);
+    }
+
+    public void Reiniciar(View view) {
+        suma=0;
+        TextView textView= findViewById(R.id.numero);
+        textView.setText(String.valueOf(suma));
     }
 }

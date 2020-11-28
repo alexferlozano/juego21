@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
+        android:layout_weight="4"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -24,29 +24,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:weightSum="3">
+        android:layout_weight="2"
+        android:weightSum="4"
+        android:orientation="vertical">
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Sumar numero"
             android:layout_weight="1"
             android:onClick="sumarNumero"
             />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Enviar numero"
             android:layout_weight="1"
             android:onClick="enviarNumero"
             />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Ver estadisticas"
             android:layout_weight="1"
             android:id="@+id/Ver_Estadisticas"
             android:onClick="verEstadisticas"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Reiniciar Numero"
+            android:layout_weight="1"
+            android:id="@+id/ReiniciarValor"
+            android:onClick="Reiniciar"
             />
     </LinearLayout>
 
