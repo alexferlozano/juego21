@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -39,7 +41,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sumarNumero(View view) {
-        //ObtenerNumero();
+        ObtenerNumero();
+    }
+
+    public void enviarNumero(View view) {
+        TextView numero=findViewById(R.id.numero);
+        int n= Integer.parseInt(numero.getText().toString());
+        if(21>n)
+        {
+            EnviarNumero();
+        }
+        else
+        {
+            Toast.makeText(MainActivity.this,"Superaste el limite de 21",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void Reiniciar(View view) {
+        suma=0;
+        TextView textView= findViewById(R.id.numero);
+        textView.setText(String.valueOf(suma));
+    }
+
+    private void ObtenerNumero()
+    {
         String urln = "https://ramiro174.com/api/numero";
         JsonObjectRequest request= new JsonObjectRequest(Request.Method.GET, urln, null, new Response.Listener<JSONObject>() {
             @Override
@@ -61,21 +86,22 @@ public class MainActivity extends AppCompatActivity {
         VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
     }
 
-    public void enviarNumero(View view) {
-    }
-    private void ObtenerNumero()
+    private void EnviarNumero()
     {
-        String urln = "https://ramiro174.com/api/numero";
-        JsonObjectRequest request= new JsonObjectRequest(Request.Method.GET, urln, null, new Response.Listener<JSONObject>() {
+        String url = "https://ramiro174.com/api/enviar/numero";
+        TextView numero=findViewById(R.id.numero);
+        int n= Integer.parseInt(numero.getText().toString());
+        JSONObject jugador=new JSONObject();
+        try {
+            jugador.put("nombre", "Alexferloz");
+            jugador.put("numero",n);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest request= new JsonObjectRequest(Request.Method.POST, url, jugador, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    suma+=response.getInt("numero");
-                    TextView textView= findViewById(R.id.numero);
-                    textView.setText(String.valueOf(suma));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            Toast.makeText(MainActivity.this,"Has enviado los datos correctamente",Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -83,12 +109,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        queue.add(request);
-    }
-
-    public void Reiniciar(View view) {
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
         suma=0;
-        TextView textView= findViewById(R.id.numero);
-        textView.setText(String.valueOf(suma));
+        numero.setText(String.valueOf(suma));
     }
 }
