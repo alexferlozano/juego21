@@ -62,7 +62,7 @@ public class activityEstadistica extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(activityEstadistica.this,"No se ha podido realizar la peticion",Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(request);
