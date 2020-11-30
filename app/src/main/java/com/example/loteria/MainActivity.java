@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sumarNumero(View view) {
         ObtenerNumero();
+        carta(numero);
     }
 
     public void enviarNumero(View view) {
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     numero=response.getInt("numero");
+                    view(carta(numero));
                     suma+=numero;
                     TextView textView= findViewById(R.id.numero);
                     textView.setText(String.valueOf(suma));
@@ -130,77 +132,55 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void carta(int x)
+    private ImageView carta(int x)
     {
+        ImageView imagen= new ImageView(this);
+
         switch (x)
         {
             case 1:
-                ImageView imagen1= new ImageView(this);
-                imagen1.setImageResource(R.drawable.c1);
-                view(imagen1);
+                imagen.setImageResource(R.drawable.c1);
                 break;
             case 2:
-                ImageView imagen2= new ImageView(this);
-                imagen2.setImageResource(R.drawable.c2);
-                view(imagen2);
+                imagen.setImageResource(R.drawable.c2);
                 break;
             case 3:
-                ImageView imagen3= new ImageView(this);
-                imagen3.setImageResource(R.drawable.c3);
-                view(imagen3);
+                imagen.setImageResource(R.drawable.c3);
                 break;
             case 4:
-                ImageView imagen4= new ImageView(this);
-                imagen4.setImageResource(R.drawable.c4);
-                view(imagen4);
+                imagen.setImageResource(R.drawable.c4);
                 break;
             case 5:
-                ImageView imagen5= new ImageView(this);
-                imagen5.setImageResource(R.drawable.c5);
-                view(imagen5);
+                imagen.setImageResource(R.drawable.c5);
                 break;
             case 6:
-                ImageView imagen6= new ImageView(this);
-                imagen6.setImageResource(R.drawable.c6);
-                view(imagen6);
+                imagen.setImageResource(R.drawable.c6);
                 break;
             case 7:
-                ImageView imagen7= new ImageView(this);
-                imagen7.setImageResource(R.drawable.c7);
-                view(imagen7);
+                imagen.setImageResource(R.drawable.c7);
                 break;
             case 8:
-                ImageView imagen8= new ImageView(this);
-                imagen8.setImageResource(R.drawable.c8);
-                view(imagen8);
+                imagen.setImageResource(R.drawable.c8);
                 break;
             case 9:
-                ImageView imagen9= new ImageView(this);
-                imagen9.setImageResource(R.drawable.c9);
-                view(imagen9);
+                imagen.setImageResource(R.drawable.c9);
                 break;
             case 10:
-                ImageView imagen10= new ImageView(this);
-                imagen10.setImageResource(R.drawable.c10);
-                view(imagen10);
+                imagen.setImageResource(R.drawable.c10);
                 break;
             case 11:
-                ImageView imagen11= new ImageView(this);
-                imagen11.setImageResource(R.drawable.c11);
-                view(imagen11);
+                imagen.setImageResource(R.drawable.c11);
                 break;
             case 12:
-                ImageView imagen12= new ImageView(this);
-                imagen12.setImageResource(R.drawable.c12);
-                view(imagen12);
+                imagen.setImageResource(R.drawable.c12);
                 break;
             case 13:
-                ImageView imagen13= new ImageView(this);
-                imagen13.setImageResource(R.drawable.c13);
-                view(imagen13);
+                imagen.setImageResource(R.drawable.c13);
                 break;
 
         }
+        imagen.setLayoutParams(new LinearLayout.LayoutParams(400,370));
+        return imagen;
     }
 
     private void view(ImageView imagen)
